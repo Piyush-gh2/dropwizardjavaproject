@@ -1,0 +1,17 @@
+# Build:
+#   docker build -t piyushmishra:trafic-ratp-dropwizard .
+#
+# Run:
+#   docker run -t -p 8080:8080 ksahnine:trafic-ratp-dropwizard
+#
+# DOCKER_VERSION 1.4
+
+FROM dockerfile/java:openjdk-21-jdk
+MAINTAINER PIYUSH MISHRA <piyushmishra2c@gmail.com>
+
+ADD target/trafic-ratp-1.0.0-SNAPSHOT.jar /app/trafic-ratp-1.0.0-SNAPSHOT.jar
+ADD trafic-ratp.yml /conf/trafic-ratp.yml
+
+CMD java -jar /app/trafic-ratp-1.0.0-SNAPSHOT.jar server /conf/trafic-ratp.yml
+
+EXPOSE 8080
